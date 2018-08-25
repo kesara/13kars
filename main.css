@@ -1,0 +1,46 @@
+body {
+  background-color: #1C1C1C;
+}
+
+.info {
+  background-color: #1C1C1C;
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 20px 250px 350px 20px;
+  grid-template-rows: 20px 5px 400px 5px auto;
+}
+
+.title {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.score {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  text-align: right;
+}
+
+.main {
+  background-color: #424242;
+  grid-column: 2 / span 2;
+  grid-row: 3 / 4;
+}
+
+.footer-keys {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+}
+
+.footer-info {
+  grid-column: 3 / 4;
+  grid-row: 5 / 6;
+}
