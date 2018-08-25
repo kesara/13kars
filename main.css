@@ -21,8 +21,68 @@ a:link, a:visited, a:hover, a:active {
 
 .container {
   display: grid;
-  grid-template-columns: 20px 250px 150px 250px 20px;
+  grid-template-columns: 10px 200px 200px 200px 10px;
   grid-template-rows: 20px 5px 400px 5px auto auto;
+}
+
+@media screen and (min-width: 640px) {
+  .container {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .container {
+    margin-left: 80px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    margin-left: 190px;
+  }
+}
+
+@media screen and (min-width: 1152px) {
+  .container {
+    margin-left: 256px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    margin-left: 320px;
+  }
+}
+
+@media screen and (min-width: 2048px) {
+  .container {
+    margin-left: 704px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .container {
+    margin-left: 960px;
+  }
+}
+
+@media screen and (min-width: 3440px) {
+  .container {
+    margin-left: 1400px;
+  }
+}
+
+@media screen and (min-width: 3840px) {
+  .container {
+    margin-left: 1600px;
+  }
+}
+
+@media screen and (min-width: 4096px) {
+  .container {
+    margin-left: 1728px;
+  }
 }
 
 .title {
