@@ -8,6 +8,7 @@ JavaScript library.
 * Use <kbd>&downarrow;</kbd> <kbd>&uparrow;</kbd> or <kbd>J</kbd> <kbd>K</kbd>
 to move your car.
 * Avoid hitting other cars.
+* Don't run out of gas. 😁
 * Use <kbd>Space</kbd> to restart.
 
 ## License

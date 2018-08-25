@@ -3,7 +3,6 @@ body {
 }
 
 .info {
-  background-color: #1C1C1C;
   color: #ffffff;
   font-family: "Courier New", Courier, monospace;
 }
@@ -12,10 +11,18 @@ body {
   font-weight: bold;
 }
 
+.small {
+  font-size: small;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: #ffffff;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 20px 250px 350px 20px;
-  grid-template-rows: 20px 5px 400px 5px auto;
+  grid-template-columns: 20px 250px 150px 250px 20px;
+  grid-template-rows: 20px 5px 400px 5px auto auto;
 }
 
 .title {
@@ -23,24 +30,37 @@ body {
   grid-row: 1 / 2;
 }
 
-.score {
+.gas {
   grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  text-align: center;
+}
+
+.score {
+  grid-column: 4 / 5;
   grid-row: 1 / 2;
   text-align: right;
 }
 
 .main {
   background-color: #424242;
-  grid-column: 2 / span 2;
+  grid-column: 2 / span 3;
   grid-row: 3 / 4;
+}
+
+.hud {
+  background-color: #2E2E2E;
+  grid-column: 2 / span 3;
+  grid-row: 5 / 6;
+  text-align: center;
 }
 
 .footer-keys {
   grid-column: 2 / 3;
-  grid-row: 5 / 6;
+  grid-row: 6 / 7;
 }
 
 .footer-info {
-  grid-column: 3 / 4;
-  grid-row: 5 / 6;
+  grid-column: 3 / span 2;
+  grid-row: 6 / 7;
 }

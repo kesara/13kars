@@ -29,6 +29,11 @@ const MAX_SPEED_UP = 6; // maximum speed up attribute
 const BGN = Number(window.getComputedStyle(
   document.getElementById("main-div"), null).getPropertyValue(
     "background-color").slice(4, 6));
+const LOW_GAS_MARK = 200;    // low gas notification
+// messages
+const DEFAULT = "Drive safe!";
+const LOW_GAS = "Running out of gas!";
+const GAME_OVER = "Game Over! Press [SPACE] to restart.";
 
 // initated kontra engine
 kontra.init();
@@ -38,6 +43,7 @@ kontra.canvas.width = WIDTH;
 kontra.canvas.height = HEIGHT;
 
 var score = 0;  // players' score
+var gas = 1000;  // how much gas player got
 
 /* helper functions */
 function getRandomInt(max) {
@@ -75,6 +81,20 @@ function updateScore(score) {
   element.innerText = score;
 }
 
+function updateGas(gas) {
+  /* update gas */
+  element = document.getElementById("gas");
+  if (gas < 0) {
+    gas = 0;
+  }
+  element.innerText = gas;
+}
+
+function updateHud(message) {
+  /* show hud message */
+  element = document.getElementById("hud");
+  element.innerText = message;
+}
 
 /* cars */
 // players' car
@@ -94,6 +114,11 @@ kontra.keys.bind("space", function() {
   window.location.reload();
 });
 
+/* update display */
+updateScore(score);
+updateGas(gas);
+updateHud(DEFAULT);
+
 /* main game loop */
 var loop = kontra.gameLoop({
   update() {
@@ -103,10 +128,15 @@ var loop = kontra.gameLoop({
     // capture user input
     if (kontra.keys.pressed("up") || kontra.keys.pressed("k")) {
       car.y--;
+      gas--;
     }
     if (kontra.keys.pressed("down") || kontra.keys.pressed("j")) {
       car.y++;
+      gas--;
     }
+
+    // update gas
+    updateGas(gas);
 
     // update sprites
     car.update();
@@ -115,7 +145,18 @@ var loop = kontra.gameLoop({
     // capture collision
     if (car.collidesWith(enermy)) {
       // car collision
+      updateHud(GAME_OVER);
       loop.stop();
+    }
+
+    // check fuel
+    if (gas < 0) {
+      // ran out of fuel
+      updateHud(GAME_OVER);
+      loop.stop();
+    } else if (gas <= LOW_GAS_MARK) {
+      // low on fuel
+      updateHud(LOW_GAS);
     }
 
     // move sprites
