@@ -133,6 +133,12 @@ function updateHud(message) {
   element.innerText = message;
 }
 
+function pauseAnimation() {
+  /* pause CSS animations */
+  document.querySelector(".gutter-top").classList.add("paused");
+  document.querySelector(".gutter-bottom").classList.add("paused");
+}
+
 /* sprites */
 // players' car
 var car = getCar();
@@ -192,6 +198,7 @@ var loop = kontra.gameLoop({
       // car collision
       updateHud(GAME_OVER_COLLISION);
       loop.stop();
+      pauseAnimation();
     }
 
     if (fuel_cell.active === true && car.collidesWith(fuel_cell)) {
@@ -206,9 +213,12 @@ var loop = kontra.gameLoop({
       // ran out of fuel
       updateHud(GAME_OVER_NOFUEL);
       loop.stop();
+      pauseAnimation();
     } else if (gas <= LOW_GAS_MARK) {
       // low on fuel
       updateHud(LOW_GAS);
+    } else {
+      updateHud(DEFAULT);
     }
 
     // fuel cell distribution
