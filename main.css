@@ -22,7 +22,7 @@ a:link, a:visited, a:hover, a:active {
 
 .container {
   display: grid;
-  grid-template-columns: 10px 200px 200px 200px 10px;
+  grid-template-columns: 10px 150px 150px 150px 150px 10px;
   grid-template-rows: 20px 5px 5px 400px 5px 5px auto auto;
 }
 
@@ -91,48 +91,54 @@ a:link, a:visited, a:hover, a:active {
   grid-row: 1 / 2;
 }
 
-.gas {
+.level {
   grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  text-align: left;
+}
+
+.fuel {
+  grid-column: 4 / 5;
   grid-row: 1 / 2;
   text-align: center;
 }
 
 .score {
-  grid-column: 4 / 5;
+  grid-column: 5 / 6;
   grid-row: 1 / 2;
   text-align: right;
 }
 
 .gutter-top {
-  grid-column: 2 / span 3;
+  grid-column: 2 / span 4;
   grid-row: 3 / 4;
 }
 
 .main {
-  grid-column: 2 / span 3;
+  grid-column: 2 / span 4;
   grid-row: 4 / 5;
   background-color: #424242;
 }
 
 .gutter-bottom {
-  grid-column: 2 / span 3;
+  grid-column: 2 / span 4;
   grid-row: 5 / 6;
 }
 
 .hud {
-  grid-column: 2 / span 3;
+  grid-column: 2 / span 4;
   grid-row: 7 / 8;
   background-color: #2E2E2E;
   text-align: center;
 }
 
 .footer-keys {
-  grid-column: 2 / 3;
+  grid-column: 2 / spn 2;
   grid-row: 8 / 9;
 }
 
 .footer-info {
-  grid-column: 3 / span 2;
+  grid-column: 4 / span 2;
   grid-row: 8 / 9;
 }
 
