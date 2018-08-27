@@ -23,7 +23,7 @@
 /* configuration */
 const WIDTH = 600;          // canvas width
 const HEIGHT = 400;         // canvas height
-const MIN_SPEED = 4;        // minimum speed of enermy cars
+const MIN_SPEED = 4;        // minimum speed of enemy cars
 const MAX_SPEED_UP = 6;     // maximum speed up attribute
 const LEVEL_THRESHOLD = 15; // score at which level increase
 // single hex value of background color
@@ -82,13 +82,13 @@ function getCar() {
   });
 }
 
-function getEnermyCar() {
-  /* return enermy car */
-  var enermy = getCar();
-  enermy.x = WIDTH;
-  enermy.y = getRandomInt(HEIGHT - enermy.height);
-  enermy.dx = -MIN_SPEED -getRandomInt(MAX_SPEED_UP);
-  return enermy;
+function getEnemyCar() {
+  /* return enemy car */
+  var enemy = getCar();
+  enemy.x = WIDTH;
+  enemy.y = getRandomInt(HEIGHT - enemy.height);
+  enemy.dx = -MIN_SPEED -getRandomInt(MAX_SPEED_UP);
+  return enemy;
 }
 
 
@@ -163,9 +163,9 @@ var car = getCar();
 car.x = 10;
 car.y = 60;
 
-// enermy cars
-var enermies = [];
-enermies.push(getEnermyCar());
+// enemy cars
+var enemies = [];
+enemies.push(getEnemyCar());
 
 // fuel cell
 var fuel_cell = getFuelCell();
@@ -187,16 +187,16 @@ var loop = kontra.gameLoop({
     // update score
     updateScore(score);
 
-    // add new enermies on level ups
+    // add new enemies on level ups
     if (score > 0 &&
         score % (
-          LEVEL_THRESHOLD + LEVEL_THRESHOLD * (enermies.length -1))  == 0) {
+          LEVEL_THRESHOLD + LEVEL_THRESHOLD * (enemies.length -1))  == 0) {
       // level up: add another car
       score++;
       level++;
-      // add new enermy car
-      var new_enermy = getEnermyCar();
-      enermies.push(new_enermy);
+      // add new enemy car
+      var new_enemy = getEnemyCar();
+      enemies.push(new_enemy);
     }
 
     // update level
@@ -219,27 +219,27 @@ var loop = kontra.gameLoop({
 
     // update sprites
     car.update();
-    for (i in enermies) {
-      var enermy = enermies[i];
-      enermy.update();
+    for (i in enemies) {
+      var enemy = enemies[i];
+      enemy.update();
       if (fuel_cell.active === true) {
         fuel_cell.update();
       }
 
       // capture collision
-      if (car.collidesWith(enermy)) {
+      if (car.collidesWith(enemy)) {
         // car collision
-        updateHud(GAME_OVER_COLLISION);
         loop.stop();
         pauseAnimation();
+        updateHud(GAME_OVER_COLLISION);
       }
 
-      // move enermy car
-      if (enermy.x + enermy.width < 0) {
-        enermy.x = WIDTH;
-        enermy.y = getRandomInt(HEIGHT - enermy.height);
-        enermy.color = getRandomcolor();
-        enermy.dx = -MIN_SPEED - getRandomInt(MAX_SPEED_UP);
+      // move enemy car
+      if (enemy.x + enemy.width < 0) {
+        enemy.x = WIDTH;
+        enemy.y = getRandomInt(HEIGHT - enemy.height);
+        enemy.color = getRandomcolor();
+        enemy.dx = -MIN_SPEED - getRandomInt(MAX_SPEED_UP);
         score += 1;
       }
     }
@@ -249,6 +249,8 @@ var loop = kontra.gameLoop({
       fuel += fuel_cell.fuel;
       fuel_cell.active = false;
       fuel_cell.update();
+      // update hud
+      updateHud(DEFAULT);
     }
 
     // check fuel
@@ -260,8 +262,6 @@ var loop = kontra.gameLoop({
     } else if (fuel <= LOW_FUEL_TRESHOLD) {
       // low on fuel
       updateHud(LOW_FUEL);
-    } else {
-      updateHud(DEFAULT);
     }
 
     // fuel cell distribution
@@ -295,9 +295,9 @@ var loop = kontra.gameLoop({
   // render cars
   render() {
     car.render();
-    for (i in enermies) {
-      var enermy = enermies[i];
-      enermy.render();
+    for (i in enemies) {
+      var enemy = enemies[i];
+      enemy.render();
     }
     if (fuel_cell.active === true) {
       fuel_cell.render();
