@@ -43,6 +43,14 @@ const GAME_OVER = "Press [SPACE] to restart. " + TWEET;
 const GAME_OVER_COLLISION = "Collision! " + GAME_OVER;
 const GAME_OVER_NOFUEL = "Ran out of fuel! " + GAME_OVER;
 
+// audio
+var audio_fuel_cell = new Audio("audio/fuel_cell.wav");
+var audio_no_fuel = new Audio("audio/no_fuel.wav");
+var audio_low_fuel = new Audio("audio/low_fuel.wav");
+var audio_collision = new Audio("audio/collision.wav");
+var audio_pass = new Audio("audio/pass.wav");
+var audio_level_up = new Audio("audio/level_up.wav");
+
 // initated kontra engine
 kontra.init();
 
@@ -99,6 +107,8 @@ function getFuelCell() {
   /* return a fuel cell */
   return kontra.sprite({
     dx: -FUEL_CELL_SPEED,
+    width: 40,
+    height: 40,
     radius: 20,
     color_index: 255,
     color_asc: false,
@@ -195,6 +205,7 @@ var loop = kontra.gameLoop({
         score % (
           LEVEL_THRESHOLD + LEVEL_THRESHOLD * (enemies.length -1))  == 0) {
       // level up: add another car
+      audio_level_up.play();
       score++;
       level++;
       // add new enemy car
@@ -232,13 +243,15 @@ var loop = kontra.gameLoop({
       // capture collision
       if (car.collidesWith(enemy)) {
         // car collision
+        audio_collision.play();
         loop.stop();
         pauseAnimation();
         updateHud(GAME_OVER_COLLISION);
       }
 
-      // move enemy car
       if (enemy.x + enemy.width < 0) {
+        // spawn enemy car
+        audio_pass.play();
         enemy.x = WIDTH;
         enemy.y = getRandomInt(HEIGHT - enemy.height);
         enemy.color = getRandomcolor();
@@ -249,6 +262,7 @@ var loop = kontra.gameLoop({
 
     if (fuel_cell.active === true && car.collidesWith(fuel_cell)) {
       // refill fuel
+      audio_fuel_cell.play();
       fuel += fuel_cell.fuel;
       fuel_cell.active = false;
       fuel_cell.update();
@@ -259,11 +273,13 @@ var loop = kontra.gameLoop({
     // check fuel
     if (fuel < 0) {
       // ran out of fuel
+      audio_no_fuel.play();
       updateHud(GAME_OVER_NOFUEL);
       loop.stop();
       pauseAnimation();
     } else if (fuel <= LOW_FUEL_TRESHOLD) {
       // low on fuel
+      audio_low_fuel.play();
       updateHud(LOW_FUEL);
     }
 

@@ -39,3 +39,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 [MIT License](https://github.com/straker/kontra/blob/master/LICENSE).
 
 Copyright (c) 2015 Steven Lambert.
+
+### Audio
+Audio files were created using [jsfxr](http://github.grumdrig.com/jsfxr/).
