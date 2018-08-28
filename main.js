@@ -36,7 +36,10 @@ const FUEL_CELL_SPEED = 5;   // fuel cell speed
 // messages
 const DEFAULT = "Going againts incoming traffic. Drive safe!";
 const LOW_FUEL = "Running out of fuel!";
-const GAME_OVER = "Press [SPACE] to restart.";
+const TWEET = "<a href=\"https://twitter.com/intent/tweet?" +
+              "text=I scored <SCORE> on 13kars&" +
+              "url=https://13kars.fq.nz\">Share on Twitter</a>";
+const GAME_OVER = "Press [SPACE] to restart. " + TWEET;
 const GAME_OVER_COLLISION = "Collision! " + GAME_OVER;
 const GAME_OVER_NOFUEL = "Ran out of fuel! " + GAME_OVER;
 
@@ -142,7 +145,7 @@ function updateFuel(fuel) {
 function updateHud(message) {
   /* show hud message */
   element = document.getElementById("hud");
-  element.innerText = message;
+  element.innerHTML = message.replace("<SCORE>", score);
 }
 
 function updateLevel(message) {
