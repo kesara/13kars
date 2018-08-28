@@ -34,7 +34,7 @@ const LOW_FUEL_TRESHOLD = 200;  // low fuel notification
 const FUEL_CELL_TRESHOLD = 100; // value in which fuel cell gets discharged
 const FUEL_CELL_SPEED = 5;   // fuel cell speed
 // messages
-const DEFAULT = "Going againts incoming traffic. Drive safe!";
+const DEFAULT = "Going against incoming traffic. Drive safe!";
 const LOW_FUEL = "Running out of fuel!";
 const TWEET = "<a href=\"https://twitter.com/intent/tweet?" +
               "text=I scored <SCORE> on 13kars&" +
